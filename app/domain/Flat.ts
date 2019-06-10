@@ -4,26 +4,29 @@ import { Types } from "mongoose";
 
 
 export class Flat extends Typegoose {
-    // @prop()
+    @prop({ required: true, unique: true })
     id: string;
     @prop()
+    flatNumber: string;
+    @prop()
     isApartment: boolean;
-    // @prop()
+    @prop()
     rooms: number;
-    // @prop()
+    @prop()
     size: number;
-    // @prop()
+    @prop()
     externalSize: number;
-    // @prop()
+    @prop()
     priceWithVat: string;
-    // @prop()
+    @prop()
     status: FlatState;
-    // @prop()
+    @prop()
     snapshotDate: Date;
 
-    constructor(id: string, isApartment: boolean, rooms: number, size: number, externalSize: number, priceWithVat: string, status: FlatState, snapshotDate: Date) {
+    constructor(flatNumber: string, isApartment: boolean, rooms: number, size: number, externalSize: number, priceWithVat: string, status: FlatState, snapshotDate: Date) {
         super();
-        this.id = id;
+        this.id = Flat.generateFlatId(flatNumber, snapshotDate);
+        this.flatNumber = flatNumber;
         this.isApartment = isApartment;
         this.rooms = rooms;
         this.size = size;
@@ -37,7 +40,7 @@ export class Flat extends Typegoose {
         return new Flat('', false, 0, 0, 0, '', FlatState.voľný, new Date());
     }
 
-    static generateFlatId(flatNumber: number, date: Date): string {
+    static generateFlatId(flatNumber: string, date: Date): string {
         return `${flatNumber}-${date.getDate()}_${date.getMonth() + 1}_${date.getFullYear()}`;
     }
 }

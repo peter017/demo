@@ -21,7 +21,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "jsdom": "^15.1.1",
-    "mongoose": "^5.5.13",
+    "mongoose": "^5.5.14",
     "node-fetch": "^2.6.0",
     "numeral": "^2.0.6",
     "ts-node-dev": "^1.0.0-pre.39",
